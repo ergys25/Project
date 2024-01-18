@@ -24,11 +24,12 @@ class CSVProcessor:
                         self.data[id] = {
                             "name": full_name,
                             "score": score,
-                            "combine": 0,
+                            "combine": score,
                         }
                     else:
                         if self.data[id]["name"] == full_name:
                             self.data[id]["score"] += score
+                            self.data[id]["combine"] += score
                         else:
                             new_id = (
                                 id + "_" + full_name
@@ -37,10 +38,11 @@ class CSVProcessor:
                                 self.data[new_id] = {
                                     "name": full_name,
                                     "score": score,
-                                    "combine": 0,
+                                    "combine": score,
                                 }
                             else:
                                 self.data[new_id]["score"] += score
+                                self.data[new_id]["combine"] += score
 
     def save_combined_data(self, output_file):
         """
